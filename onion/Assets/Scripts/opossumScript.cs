@@ -29,7 +29,7 @@ public class opossumScript : MonoBehaviour
         if (playerCheck.collider != null)
         {
             Debug.Log("monster detected player");
-            CancelInvoke();//생각하기 위해 잠시 멈췄다가 실행
+            //CancelInvoke();//생각하기 위해 잠시 멈췄다가 실행
             //Invoke("FindPlayer", 1);
         }
 
@@ -38,7 +38,6 @@ public class opossumScript : MonoBehaviour
     void FindPlayer()
     {
         head = -1;
-        Debug.Log(head);
         Invoke("FindPlayer", Random.Range(1f, 3f));//최소<=난수<최대
     }
 }
