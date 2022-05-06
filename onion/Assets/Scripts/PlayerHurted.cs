@@ -7,7 +7,7 @@ public class PlayerHurted : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Transform transform;
     Animator animator;
-    CircleCollider2D collider;
+    PlayerMoving movingScript;
     public float knockback=0.1f;
     private bool ishurted;
     void Start()
@@ -15,7 +15,7 @@ public class PlayerHurted : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<CircleCollider2D>();
+        movingScript = GetComponent<PlayerMoving>();
         ishurted = false;
     }
 
@@ -37,6 +37,9 @@ public class PlayerHurted : MonoBehaviour
     {
         
         animator.SetTrigger("isDamaged");
+        //움직일 수 없어야함
+        movingScript.enabled = false;
+
         //무적
         ishurted = true;
         spriteRenderer.color = new Color(1, 1, 1, 0.4f); 
@@ -44,6 +47,9 @@ public class PlayerHurted : MonoBehaviour
         //넉백
         int direction = transform.position.x - targetPos.x > 0 ? 1 : -1;//넉백 방향
         transform.Translate(new Vector2(direction, 1)*knockback );//튕겨나감
+
+
+
         Invoke("OffDamaged", 2);
     }
 
@@ -52,5 +58,8 @@ public class PlayerHurted : MonoBehaviour
         //무적 해제
         ishurted = false;
         spriteRenderer.color = new Color(1, 1, 1, 1);
+
+        //다시 움직임
+        movingScript.enabled = true;
     }
 }

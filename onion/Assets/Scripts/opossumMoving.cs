@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class opossumScript : MonoBehaviour
+public class opossumMoving : MonoBehaviour
 {
     Rigidbody2D rigid;
     public int head;//πÊ«‚
