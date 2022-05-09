@@ -8,6 +8,7 @@ public class monsterHurted : MonoBehaviour
     Transform transform;
     //Animator animator;
     monsterMoving movingScript;
+    AliveObject hpScript;
     public float knockback = 0.1f;
     private bool ishurted;
     void Start()
@@ -16,6 +17,7 @@ public class monsterHurted : MonoBehaviour
         transform = GetComponent<Transform>();
         //animator = GetComponent<Animator>();
         movingScript = GetComponent<monsterMoving>();
+        hpScript = GetComponent<AliveObject>();
         ishurted = false;
     }
 
@@ -23,8 +25,12 @@ public class monsterHurted : MonoBehaviour
     {
         if (!ishurted && collision.gameObject.tag == "playerAttack")
         {
-            Debug.Log("conflict!!");
             OnDamaged(collision.transform.position);//충돌한 상대 위치
+            float damage = GameObject.Find("player").GetComponent<AliveObject>().getAttack();
+            if (damage > 0)
+            {
+                hpScript.hpMinus(damage);
+            }
         }
     }
 
