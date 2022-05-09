@@ -9,7 +9,8 @@ public class PlayerHurted : MonoBehaviour
     Animator animator;
     PlayerMoving movingScript;
     PlayerAttacking attackScript;
-    public float knockback=0.1f;
+    AliveObject hpScript;
+    public float knockback = 0.1f;
     private bool ishurted;
     void Start()
     {
@@ -18,26 +19,27 @@ public class PlayerHurted : MonoBehaviour
         animator = GetComponent<Animator>();
         movingScript = GetComponent<PlayerMoving>();
         attackScript = GetComponent<PlayerAttacking>();
+        hpScript = GetComponent<AliveObject>();
         ishurted = false;
     }
 
-    void Update()
-    {
-        
-    }
-   
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!ishurted && collision.gameObject.tag == "enemy")
         {
             OnDamaged(collision.transform.position);//충돌한 상대 위치
+            float damage = collision.gameObject.GetComponent<AliveObject>().getAttack();
+            if (damage > 0)
+            {
+                hpScript.hpMinus(damage);
+            }
         }
 
     }
 
     void OnDamaged(Vector2 targetPos)
     {
-        
+
         animator.SetTrigger("isDamaged");
         //움직일 수 없어야함
         movingScript.enabled = false;
@@ -45,11 +47,11 @@ public class PlayerHurted : MonoBehaviour
 
         //무적
         ishurted = true;
-        spriteRenderer.color = new Color(1, 1, 1, 0.4f); 
-        
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
         //넉백
         int direction = transform.position.x - targetPos.x > 0 ? 1 : -1;//넉백 방향
-        transform.Translate(new Vector2(direction, 1)*knockback );//튕겨나감
+        transform.Translate(new Vector2(direction, 1) * knockback);//튕겨나감
 
 
 
