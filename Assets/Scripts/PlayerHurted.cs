@@ -28,13 +28,19 @@ public class PlayerHurted : MonoBehaviour
         if (!ishurted && collision.gameObject.tag == "enemy")
         {
             OnDamaged(collision.transform.position);//충돌한 상대 위치
-            float damage = collision.gameObject.GetComponent<AliveObject>().getAttack();
-            if (damage > 0)
+            if (collision.gameObject.GetComponent<AliveObject>())
+            { //적이 공격해서 디친 경우
+                float damage = collision.gameObject.GetComponent<AliveObject>().getAttack();
+                if (damage > 0)
+                {
+                    hpScript.hpMinus(damage);
+                }
+            }
+            else //장애물 등에 의해 다친 경우
             {
-                hpScript.hpMinus(damage);
+                hpScript.hpMinus(10);
             }
         }
-
     }
 
     void OnDamaged(Vector2 targetPos)
