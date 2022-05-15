@@ -60,10 +60,13 @@ public class PlayerHurted : MonoBehaviour
         transf.Translate(new Vector2(direction, 1) * knockback);//튕겨나감
 
 
-
+        Invoke("MovingEnabled", 1);
         Invoke("OffDamaged", 2);
     }
-
+    void MovingEnabled()
+    {
+        movingScript.enabled = true;
+    }
     void OffDamaged()
     {
         //무적 해제
@@ -71,7 +74,6 @@ public class PlayerHurted : MonoBehaviour
         spriteRenderer.color = new Color(1, 1, 1, 1);
 
         //다시 움직임
-        movingScript.enabled = true;
         attackScript.enabled = true;
     }
 }
