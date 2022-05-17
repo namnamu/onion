@@ -22,11 +22,18 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        // 캐릭터 이동하는 거에 따라 카메라 이동 좌표
-        Vector3 desiredPosition = new Vector3(
-            Mathf.Clamp(target.position.x + offset.x, limitMinX + cameraHalfWidth, limitMaxX - cameraHalfWidth), // X
-            Mathf.Clamp(target.position.y + offset.y, limitMinY + cameraHalfHeight, limitMaxY - cameraHalfHeight), // Y
-            -10); // Z
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
+        if (target)
+        {
+            // 캐릭터 이동하는 거에 따라 카메라 이동 좌표
+            Vector3 desiredPosition = new Vector3(
+                Mathf.Clamp(target.position.x + offset.x, limitMinX + cameraHalfWidth, limitMaxX - cameraHalfWidth), // X
+                Mathf.Clamp(target.position.y + offset.y, limitMinY + cameraHalfHeight, limitMaxY - cameraHalfHeight), // Y
+                -10); // Z
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
+        }
+        else
+        {
+            return;
+        }
     }
 }

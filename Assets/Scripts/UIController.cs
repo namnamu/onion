@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class UIController : MonoBehaviour
 {
@@ -36,13 +38,19 @@ public class UIController : MonoBehaviour
     GameObject gameOver;
     void Start()
     {
-        gameOver = transform.Find("GameOver").gameObject;
+        gameOver = transform.Find("GameOver").gameObject;//자식중에 객체 찾기
     }
 
     public void OnGameOver()
     {
         gameOver.SetActive(true);
-        //리로드 추가 필요
+        //리로드 파일을 싱글톤 패턴으로 변경하면 이렇게 부를수가 있을까?
+        Invoke("Reroad", 3f);
+
     }
 
+    public void Reroad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
