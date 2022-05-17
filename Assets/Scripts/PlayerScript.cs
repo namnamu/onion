@@ -10,16 +10,18 @@ public class PlayerScript : MonoBehaviour
     public float jumpForce = 5.0f;
     public float maxWalkSpeed = 2.0f;
 
+    /*private bool isJumping;*/
+
     void Start()
     {
-        this.rigid2D = GetComponent<Rigidbody2D>();
+        this.rigid2D = GetComponent<Rigidbody2D>(); 
     }
 
     //일정한 간격으로 호출하는 메서드
     void Update()
     {
-        // jump하면서 key 누를 수 있게 바꾸기...
-        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
+        // jump하면서 key 누를 수 있게 바꾸기... this.rigid2D.velocity.y == 0를 this.rigid2D.velocity.y < 0.8 || this.rigid2D.velocity.y >= 0, 220515에 바꿈
+        if (Input.GetKeyDown(KeyCode.Space) && (this.rigid2D.velocity.y < 0.85 && this.rigid2D.velocity.y >= 0) )
         {
             this.rigid2D.AddForce(transform.up * this.jumpForce);
         }

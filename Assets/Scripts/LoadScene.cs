@@ -9,4 +9,9 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene("Play1");
     }
+
+    public void PlayToMain()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }
