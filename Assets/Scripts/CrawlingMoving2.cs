@@ -25,15 +25,15 @@ public class CrawlingMoving2 : MonoBehaviour
         //1. 시작 위치
         Vector2 rayStart = new Vector2(rigid.position.x, rigid.position.y);
         //2. 광선 배치
-        south = Physics2D.Raycast(rayStart, Vector3.down, 0.5f, LayerMask.GetMask("Floor"));
-        north = Physics2D.Raycast(rayStart, Vector3.up, 0.5f, LayerMask.GetMask("Floor"));
-        east = Physics2D.Raycast(rayStart, Vector3.right, 0.5f, LayerMask.GetMask("Floor"));
-        west = Physics2D.Raycast(rayStart, Vector3.left, 0.5f, LayerMask.GetMask("Floor"));
+        south = Physics2D.Raycast(rayStart, Vector3.down, 0.3f, LayerMask.GetMask("Floor"));
+        north = Physics2D.Raycast(rayStart, Vector3.up, 0.3f, LayerMask.GetMask("Floor"));
+        east = Physics2D.Raycast(rayStart, Vector3.right, 0.3f, LayerMask.GetMask("Floor"));
+        west = Physics2D.Raycast(rayStart, Vector3.left, 0.3f, LayerMask.GetMask("Floor"));
         //3. 시각화
-        Debug.DrawRay(rayStart, Vector3.down * 0.5f, new Color(1, 0, 0));//east
-        Debug.DrawRay(rayStart, Vector3.up * 0.5f, new Color(0, 1, 0));//south
-        Debug.DrawRay(rayStart, Vector3.right * 0.5f, new Color(1, 0, 1));//north
-        Debug.DrawRay(rayStart, Vector3.left * 0.5f, new Color(0, 0, 1));//west
+        Debug.DrawRay(rayStart, Vector3.down * 0.3f, new Color(1, 0, 0));//east
+        Debug.DrawRay(rayStart, Vector3.up * 0.3f, new Color(0, 1, 0));//south
+        Debug.DrawRay(rayStart, Vector3.right * 0.3f, new Color(1, 0, 1));//north
+        Debug.DrawRay(rayStart, Vector3.left * 0.3f, new Color(0, 0, 1));//west
 
         //움직임
         rigid.velocity = forward;
