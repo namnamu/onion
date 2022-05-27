@@ -30,4 +30,8 @@ public class LoadScene : MonoBehaviour
         // GameExit
         Application.Quit();
     }
+    public void Reroad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

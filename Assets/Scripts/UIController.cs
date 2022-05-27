@@ -36,21 +36,21 @@ public class UIController : MonoBehaviour
     // ========================싱글톤 패턴=========================
 
     GameObject gameOver;
+    LoadScene loadScene;
     void Start()
     {
         gameOver = transform.Find("GameOver").gameObject;//자식중에 객체 찾기
+        loadScene = GameObject.Find("GameManager").GetComponent<LoadScene>();//전체에서 객체찾기
     }
 
     public void OnGameOver()
     {
         gameOver.SetActive(true);
-        //리로드 파일을 싱글톤 패턴으로 변경하면 이렇게 부를수가 있을까?
-        Invoke("Reroad", 3f);
-
+        Invoke("Reroad", 3f); 
+    }
+    void Reroad() { 
+        loadScene.Reroad();
     }
 
-    public void Reroad()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+  
 }
