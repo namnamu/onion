@@ -9,6 +9,6 @@ for onion code team
 https://github.com/jaeyuun   
 남인경
 
-branch 이름 설명
-old_branch_nam+jeayuun->mearged_branch
+branch 이름 설명   
+old_branch_nam+jeayuun->mearged_branch   
 dev_nam+jaeyuun's pull request->mearged_branch (220527)
