@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AliveObject : MonoBehaviour
 {//모든 오브젝트의 체력을 관리하는 스크립트로 모든 생물에 대입합니다.
@@ -10,7 +11,6 @@ public class AliveObject : MonoBehaviour
     private void Awake()
     {
         ObjName = this.gameObject.name;
-        Debug.Log("ObjName:" + ObjName);
     }
     private void Start()
     {
@@ -24,6 +24,9 @@ public class AliveObject : MonoBehaviour
             hp = 100;
             attack = 40;
         }
+
+        //패배시 이벤트 출력할 컨트롤러
+//        UIController canvasScript = GameObject.Find("Canvas").GetComponent<UIController>();
     }
 
     //체력이 감소하는 경우, hp감소를 여러 스크립트에서 중복호출 되는 것을 방지하기 위한 함수
@@ -51,6 +54,7 @@ public class AliveObject : MonoBehaviour
             if (ObjName == "Player")//플레이어의 경우 게임 오버의 화면이 필요함.
             {
                 Debug.Log("게임오버");
+                UIController.Instance.OnGameOver();
             }
         }
     }

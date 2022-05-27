@@ -28,13 +28,19 @@ public class PlayerHurted : MonoBehaviour
         if (!ishurted && collision.gameObject.tag == "enemy")
         {
             OnDamaged(collision.transform.position);//충돌한 상대 위치
-            float damage = collision.gameObject.GetComponent<AliveObject>().getAttack();
-            if (damage > 0)
+            if (collision.gameObject.GetComponent<AliveObject>())
+            { //적이 공격해서 디친 경우
+                float damage = collision.gameObject.GetComponent<AliveObject>().getAttack();
+                if (damage > 0)
+                {
+                    hpScript.hpMinus(damage);
+                }
+            }
+            else //장애물 등에 의해 다친 경우
             {
-                hpScript.hpMinus(damage);
+                hpScript.hpMinus(10);
             }
         }
-
     }
 
     void OnDamaged(Vector2 targetPos)
@@ -54,10 +60,13 @@ public class PlayerHurted : MonoBehaviour
         transf.Translate(new Vector2(direction, 1) * knockback);//튕겨나감
 
 
-
+        Invoke("MovingEnabled", 1);
         Invoke("OffDamaged", 2);
     }
-
+    void MovingEnabled()
+    {
+        movingScript.enabled = true;
+    }
     void OffDamaged()
     {
         //무적 해제
@@ -65,7 +74,6 @@ public class PlayerHurted : MonoBehaviour
         spriteRenderer.color = new Color(1, 1, 1, 1);
 
         //다시 움직임
-        movingScript.enabled = true;
         attackScript.enabled = true;
     }
 }
