@@ -8,3 +8,6 @@ for onion code team
 팀원(2):   
 https://github.com/jaeyuun   
 남인경
+
+branch
+old_branch_nam+jeayuun->mearged_branch
