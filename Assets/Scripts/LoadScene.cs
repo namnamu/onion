@@ -9,4 +9,25 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene("Play1");
     }
+
+    public void PlayToMain()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void Skip()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void MainToLogin()
+    {
+        SceneManager.LoadScene("WebLogin");
+    }
+
+    public void GameExit()
+    {
+        // GameExit
+        Application.Quit();
+    }
 }
