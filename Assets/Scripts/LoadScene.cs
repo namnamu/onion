@@ -14,4 +14,20 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+
+    public void Skip()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void MainToLogin()
+    {
+        SceneManager.LoadScene("WebLogin");
+    }
+
+    public void GameExit()
+    {
+        // GameExit
+        Application.Quit();
+    }
 }

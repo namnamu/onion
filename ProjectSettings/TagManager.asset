@@ -6,6 +6,8 @@ TagManager:
   tags:
   - playerAttack
   - Ground
+  - Portal
+  - Portal2
   layers:
   - Default
   - TransparentFX
