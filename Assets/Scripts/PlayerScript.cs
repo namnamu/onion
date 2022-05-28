@@ -20,9 +20,9 @@ public class PlayerScript : MonoBehaviour
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
         isJumping = false;
-        store = GameObject.FindWithTag("Portal");
+        store = GameObject.FindWithTag("Portal");//up arrow
         player = GameObject.Find("Player");
-        portal = GameObject.FindWithTag("Portal2");
+        portal = GameObject.FindWithTag("Portal2");//그냥 닿으면 이동.
     }
 
     //일정한 간격으로 호출하는 메서드
@@ -97,6 +97,13 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isJumping = false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Clear")
+        {
+            SceneManager.LoadScene("GameClear");
         }
     }
 }
