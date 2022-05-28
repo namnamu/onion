@@ -27,4 +27,16 @@ public class SavePoint : MonoBehaviour
             PlayerPrefs.SetFloat("Position_y", transform.position.y);
         }
     }
+    //예외. 씬전환
+    public void P1ToTheP2()
+    {
+        PlayerPrefs.SetFloat("Position_x", -1.16f);
+        PlayerPrefs.SetFloat("Position_y", 1.06f);
+    }
+    public void P2ToTheP1()
+    {
+        PlayerPrefs.SetFloat("Position_x", 1.56f);
+        PlayerPrefs.SetFloat("Position_y", 0.51f);
+
+    }
 }

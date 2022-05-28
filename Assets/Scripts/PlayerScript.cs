@@ -75,6 +75,7 @@ public class PlayerScript : MonoBehaviour
             } else if (SceneManager.GetActiveScene().name == "Play2")
             {
                 SceneManager.LoadScene("Play1");
+                GameObject.Find("SaveSign").GetComponent<SavePoint>().P2ToTheP1();
             }
         }
 
@@ -84,6 +85,7 @@ public class PlayerScript : MonoBehaviour
             if ((portal.transform.position.x - 0.5 <= player.transform.position.x) && (portal.transform.position.x + 0.5 >= player.transform.position.x) && (portal.transform.position.y + 0.5 >= player.transform.position.y))
             {
                 SceneManager.LoadScene("Play2");
+                GameObject.Find("SaveSign").GetComponent<SavePoint>().P1ToTheP2();
             }
         }
             

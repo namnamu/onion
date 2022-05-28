@@ -83,7 +83,6 @@ public class CrawlingMoving2 : MonoBehaviour
             Corner(time);
         }
 
-
     }
     private void Corner(float time)
     {
