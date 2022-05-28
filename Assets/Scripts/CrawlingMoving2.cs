@@ -82,7 +82,6 @@ public class CrawlingMoving2 : MonoBehaviour
             time += Time.deltaTime;
             Corner(time);
         }
-        Debug.Log(east +"/"+ west + "/" + south + "/" + north + "/" + before + "||" + time);
 
     }
     private void Corner(float time)
