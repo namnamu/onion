@@ -1618,7 +1618,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2047527376}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: MainToPlay
+        m_MethodName: StartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

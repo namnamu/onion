@@ -8053,7 +8053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613162155282319523, guid: 6b16fdbc9a50c654f9955cc9dcc73085, type: 3}
       propertyPath: walkForce
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6613162155282319525, guid: 6b16fdbc9a50c654f9955cc9dcc73085, type: 3}
       propertyPath: m_Name

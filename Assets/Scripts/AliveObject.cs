@@ -8,6 +8,8 @@ public class AliveObject : MonoBehaviour
     private string ObjName;
     private float hp;
     private float attack;
+    public int score;
+
     private void Awake()
     {
         ObjName = this.gameObject.name;
@@ -25,8 +27,6 @@ public class AliveObject : MonoBehaviour
             attack = 40;
         }
 
-        //패배시 이벤트 출력할 컨트롤러
-//        UIController canvasScript = GameObject.Find("Canvas").GetComponent<UIController>();
     }
 
     //체력이 감소하는 경우, hp감소를 여러 스크립트에서 중복호출 되는 것을 방지하기 위한 함수
@@ -55,6 +55,11 @@ public class AliveObject : MonoBehaviour
             {
                 Debug.Log("게임오버");
                 UIController.Instance.OnGameOver();
+            }
+            else
+            { // get score
+                Debug.Log("점수획득");
+                ScoreUpdate.scoreValue += 10;
             }
         }
     }

@@ -5,6 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+    public void StartScene()
+    {
+        try
+        {
+            if (PlayerPrefs.HasKey("Scene"))
+            {
+                SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
+            }
+            else
+            {
+                MainToPlay();
+            }
+        }
+        catch
+        {
+            MainToPlay();
+        }
+        
+    }
     public void MainToPlay()
     {
         SceneManager.LoadScene("Play1");
