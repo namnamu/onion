@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
+    public string currentMapName; // 현재 플레이어가 위치한 씬 이름 저장
+    public string preteritMapName; // 과거 플레이어가 위치한 씬 이름 저장
+    public string[] ButtontransferMapName; // up키 눌러야 가는 씬
+
     Rigidbody2D rigid2D;
 
     public float walkForce = 1.0f;
@@ -12,17 +16,29 @@ public class PlayerScript : MonoBehaviour
     public float maxWalkSpeed = 2.0f;
 
     private bool isJumping;
-    GameObject portal;
-    GameObject store;
-    GameObject player;
+    private bool isPortal;
+
+    public static PlayerScript Instance;
+
+    #region singleton
+    private void Awake()
+    {
+        if (Instance != null) // 존재하면 파괴
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // 플레이어 파괴방지
+    }
+    #endregion singleton
 
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
         isJumping = false;
-        store = GameObject.FindWithTag("Portal");//up arrow
-        player = GameObject.Find("Player");
-        portal = GameObject.FindWithTag("Portal2");//그냥 닿으면 이동.
+        isPortal = false;
     }
 
     //일정한 간격으로 호출하는 메서드
@@ -37,6 +53,7 @@ public class PlayerScript : MonoBehaviour
 
         // right & left
         int key = 0;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             key = 1;
@@ -44,6 +61,29 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             key = -1;
+        }
+
+        //  up
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isPortal == true)
+        {
+            if (SceneManager.GetActiveScene().name == "Play1")
+            { // Play1일 때 윗키 누르는 포탈
+                preteritMapName = currentMapName;
+                currentMapName = ButtontransferMapName[0]; // Store
+                SceneManager.LoadScene(ButtontransferMapName[0]);
+            }
+            if (SceneManager.GetActiveScene().name == "Store")
+            {
+                preteritMapName = currentMapName;
+                currentMapName = ButtontransferMapName[1]; // Play1
+                SceneManager.LoadScene(ButtontransferMapName[1]);
+            }
+            if (SceneManager.GetActiveScene().name == "Play2")
+            {
+                preteritMapName = currentMapName;
+                currentMapName = ButtontransferMapName[1]; // Play1
+                SceneManager.LoadScene(ButtontransferMapName[1]);
+            }
         }
 
         // player speed
@@ -60,50 +100,55 @@ public class PlayerScript : MonoBehaviour
         {
             transform.localScale = new Vector3(key, 1, 1);
         }
-                
-        // store
-        if (Input.GetKeyDown(KeyCode.UpArrow) && (store.transform.position.x - 0.5 <= player.transform.position.x) && (store.transform.position.x + 0.5 >= player.transform.position.x))
-        {
-            if(SceneManager.GetActiveScene().name == "Play1")
-            {
-                SceneManager.LoadScene("Store");
-            } else if(SceneManager.GetActiveScene().name == "Store")
-            {
-                SceneManager.LoadScene("Play1");
-                // 집앞으로 보내기
-                
-            } else if (SceneManager.GetActiveScene().name == "Play2")
-            {
-                SceneManager.LoadScene("Play1");
-                GameObject.Find("SaveSign").GetComponent<SavePoint>().P2ToTheP1();
-            }
-        }
-
-        // portal
-        if (SceneManager.GetActiveScene().name == "Play1")
-        {
-            if ((portal.transform.position.x - 0.5 <= player.transform.position.x) && (portal.transform.position.x + 0.5 >= player.transform.position.x) && (portal.transform.position.y + 0.5 >= player.transform.position.y))
-            {
-                SceneManager.LoadScene("Play2");
-                GameObject.Find("SaveSign").GetComponent<SavePoint>().P1ToTheP2();
-            }
-        }
-            
-        
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            Debug.Log("Ground");
             isJumping = false;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Clear")
-        {
+        if (collision.gameObject.CompareTag("Clear"))
+        { // Clear Portal
             SceneManager.LoadScene("GameClear");
         }
+
+        if (collision.gameObject.CompareTag("Portal"))
+        { // Portal에 닿았을 때
+            Debug.Log("Portal");
+            isPortal = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            isPortal = false;
+        }
+    }
+
+    // 씬 전환 시 현재 씬 이름 저장
+    void OnEnable()
+    {
+        // 델리게이트 체인 추가
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        currentMapName = scene.name;
+    }
+
+    void OnDisable()
+    {
+        // 델리게이트 체인 제거
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
