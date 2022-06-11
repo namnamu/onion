@@ -22,6 +22,14 @@ public class Portal : MonoBehaviour
             thePlayer.preteritMapName = thePlayer.currentMapName; // 이전 씬 이름 저장
             thePlayer.currentMapName = transferMapName; // 현재 씬 이름 저장
             SceneManager.LoadScene(transferMapName); // 현재 씬 로드
+
+            //화면 전환시 플레이어 위치
+            P1ToTheP2();
         }
+    }
+    public void P1ToTheP2()
+    {
+        PlayerPrefs.SetFloat("Position_x", -1.16f);
+        PlayerPrefs.SetFloat("Position_y", -0.55f);
     }
 }

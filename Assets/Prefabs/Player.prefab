@@ -4927,10 +4927,10 @@ GameObject:
   - component: {fileID: 6613162155282319526}
   - component: {fileID: 6613162155282319521}
   - component: {fileID: 6613162155282319522}
-  - component: {fileID: 6613162155282319523}
   - component: {fileID: 6613162155282319532}
   - component: {fileID: 6613162155282319533}
   - component: {fileID: 6613162155282319534}
+  - component: {fileID: 1244003806857445173}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5060,21 +5060,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6613162155282319523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613162155282319525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ee09a489ee99c4b83d63c11eedc6a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkForce: 20
-  jumpForce: 200
-  maxWalkSpeed: 2
 --- !u!114 &6613162155282319532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,3 +5097,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d2684356239484f8fe0949052f2760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+--- !u!114 &1244003806857445173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613162155282319525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ee09a489ee99c4b83d63c11eedc6a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMapName: 
+  preteritMapName: 
+  ButtontransferMapName:
+  - Store
+  - Play1
+  - Play2
+  walkForce: 20
+  jumpForce: 200
+  maxWalkSpeed: 2

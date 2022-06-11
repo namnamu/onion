@@ -71,18 +71,28 @@ public class PlayerScript : MonoBehaviour
                 preteritMapName = currentMapName;
                 currentMapName = ButtontransferMapName[0]; // Store
                 SceneManager.LoadScene(ButtontransferMapName[0]);
+
+                isPortal = false;
             }
             if (SceneManager.GetActiveScene().name == "Store")
             {
                 preteritMapName = currentMapName;
                 currentMapName = ButtontransferMapName[1]; // Play1
                 SceneManager.LoadScene(ButtontransferMapName[1]);
+
+                //포탈없음?
+                isPortal = false;
             }
             if (SceneManager.GetActiveScene().name == "Play2")
             {
                 preteritMapName = currentMapName;
                 currentMapName = ButtontransferMapName[1]; // Play1
                 SceneManager.LoadScene(ButtontransferMapName[1]);
+
+                isPortal = false;
+                //화면 전환시 플레이어 위치
+                PlayerPrefs.SetFloat("Position_x", 1.56f);
+                PlayerPrefs.SetFloat("Position_y", 0.45f);
             }
         }
 
