@@ -51477,6 +51477,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7789264521821414856, guid: 2795b34ab58dc9a47bbf21af93a3da10, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7789264521821414857, guid: 2795b34ab58dc9a47bbf21af93a3da10, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -51528,6 +51532,10 @@ PrefabInstance:
     - target: {fileID: 7789264521821414871, guid: 2795b34ab58dc9a47bbf21af93a3da10, type: 3}
       propertyPath: m_Name
       value: Audio Source
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789264521821414871, guid: 2795b34ab58dc9a47bbf21af93a3da10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2795b34ab58dc9a47bbf21af93a3da10, type: 3}
