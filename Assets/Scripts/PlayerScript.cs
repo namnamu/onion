@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool isJumping;
     private bool isPortal;
+    private bool isClear;
 
     public static PlayerScript Instance;
 
@@ -39,6 +40,7 @@ public class PlayerScript : MonoBehaviour
         this.rigid2D = GetComponent<Rigidbody2D>();
         isJumping = false;
         isPortal = false;
+        isClear = false;
     }
 
     //일정한 간격으로 호출하는 메서드
@@ -97,6 +99,11 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isClear == true)
+        {
+            SceneManager.LoadScene("GameClear");
+        }
+
         // player speed
         float speedx = Mathf.Abs(this.rigid2D.velocity.x);
 
@@ -126,7 +133,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Clear"))
         { // Clear Portal
-            SceneManager.LoadScene("GameClear");
+            isClear = true;
         }
 
         if (collision.gameObject.CompareTag("Portal"))
@@ -141,6 +148,11 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Portal"))
         {
             isPortal = false;
+        }
+
+        if (collision.gameObject.CompareTag("Clear"))
+        {
+            isClear = false;
         }
     }
 

@@ -1291,7 +1291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC885\uB8CC\uD558\uAE30"
+  m_Text: "\uBA54\uC778\uC73C\uB85C"
 --- !u!222 &1716560561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1663,7 +1663,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 345781290}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: GameExit
+        m_MethodName: PlayToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
