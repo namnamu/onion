@@ -31,5 +31,6 @@ public class Portal : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Position_x", -1.16f);
         PlayerPrefs.SetFloat("Position_y", -0.55f);
+        PlayerPrefs.SetString("Scene", "Play2");
     }
 }

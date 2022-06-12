@@ -93,6 +93,7 @@ public class PlayerScript : MonoBehaviour
                 //화면 전환시 플레이어 위치
                 PlayerPrefs.SetFloat("Position_x", 1.56f);
                 PlayerPrefs.SetFloat("Position_y", 0.45f);
+                PlayerPrefs.SetString("Scene", "Play1");
             }
         }
 

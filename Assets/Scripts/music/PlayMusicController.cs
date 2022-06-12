@@ -22,8 +22,14 @@ public class PlayMusicController : MonoBehaviour
     {
         BGM = gameObject.AddComponent<AudioSource>();
         BGM.loop = true;
-        if (BGMList.Length > 0) PlayBGM(BGMList[0].name);
-
+        if (SceneManager.GetActiveScene().name.Equals("Play2"))
+        {
+            PlayBGM(BGMList[1].name);
+        }
+        else
+        {
+            PlayBGM(BGMList[0].name);
+        }
 
         //시작 시 이벤트를 등록해 줍니다.
         SceneManager.sceneLoaded += LoadedsceneEvent;
@@ -47,20 +53,18 @@ public class PlayMusicController : MonoBehaviour
 
     private void Awake()
     {
-        
-            if (Instance != null)//비어있지 않음.
-            {
-                Destroy(gameObject);//이전게 안비어있으면 현재 오브젝트 파괴.
-                return;
-            }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);//파괴 ㄴ
-
+        if (Instance != null)//비어있지 않음.
+        {
+            Destroy(gameObject);//이전게 안비어있으면 현재 오브젝트 파괴.
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);//파괴 ㄴ
     }
     //===============================
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Play2")
+        if(scene.name.Equals("Play2"))
         {
             BGM.Stop();
             PlayBGM("play2");
